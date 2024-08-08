@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Pics</title>
+    <link rel="stylesheet" href="/upload.css">
+</head>
+<body>
+    <h1>Welcome to the Upload Page</h1>
+    <p>Here you can share your images and also provide a description for each image.</p>
+    <form action="/upload" method="post" enctype="multipart/form-data" class="upload-form">
+        <div class="form-group">
+            <label for="title" class="form-label">Photo Title</label>
+            <input type="text" name="title" id="title">
+
+            <label for="description" class="form-label">Description</label>
+            <input type="text" name="description" id="description">
+
+            <label for="image" class="form-label">Select Photo</label>
+            <input type="file" name="image" id="image">
+            
+        </div>
+        <button type="submit">Upload</button>
+        <a href="/"><button type="button">Gallery</button></a>
+    </form>
+
+    <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <ul class="error-li">
+            <% errors.forEach(error => { %>
+                <li class="error-it"><%= error.msg %></li>
+            <% }); %>
+        </ul>
+    <% } %>
+
+    <% if (typeof success !== 'undefined' && success) { %>
+        <script>
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000); // Redirect after 2 seconds
+        </script>
+    <% } %>
+</body>
+</html>
